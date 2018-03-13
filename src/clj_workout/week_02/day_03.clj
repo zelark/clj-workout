@@ -31,15 +31,7 @@
 ;; Write a function which calculates the Cartesian product
 ;; of two sets.
 (defn cart-product [xs ys]
-  (->> xs
-       (map (fn [x] (map (fn [y] [x y]) ys)))
-       (apply concat)
-       set))
-
-(defn cart-product [xs ys]
-  (->> xs
-       (mapcat (fn [x] (map (fn [y] [x y]) ys)))
-       set))
+  (set (for [x xs y ys] [x y])))
 
 (= (cart-product #{"ace" "king" "queen"} #{"♠" "♥" "♦" "♣"})
    #{["ace"   "♠"] ["ace"   "♥"] ["ace"   "♦"] ["ace"   "♣"]
