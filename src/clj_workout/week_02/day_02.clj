@@ -16,10 +16,7 @@
 ;; but not all of the parameters are true. Otherwise your function
 ;; should return false.
 (defn half-true? [& xs]
-  (if (and (not-every? true? xs)
-           (some true? xs))
-    true
-    false))
+  (true? (and (some false? xs) (some true? xs))))
 
 (= false (half-true? false false))
 
