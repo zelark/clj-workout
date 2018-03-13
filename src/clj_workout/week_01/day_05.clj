@@ -36,13 +36,7 @@
 ;; Drop Every Nth Item
 ;; Write a function which drops every Nth item from a sequence.
 (defn drop-nth [coll n]
-  (let [len (count coll)]
-    (reduce (fn [acc idx]
-              (if (not= (mod idx n) 0)
-                (conj acc (nth coll (dec idx)))
-                acc))
-            []
-            (range 1 (inc len)))))
+  (keep-indexed #(if (pos? (mod (inc %1) n)) %2) coll))
 
 (= (drop-nth [1 2 3 4 5 6 7 8] 3) [1 2 4 5 7 8])
 
